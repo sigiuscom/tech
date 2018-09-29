@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>(На OS X) A KeyDown NSEvent is sent to the app · GitBook</title>
+        <title>Резолвинг DNS · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -134,7 +134,7 @@
                 <a href="02.html">
             
                     
-                    Отжалась клавиша "enter"
+                    Парсинг адреса
             
                 </a>
             
@@ -147,7 +147,7 @@
                 <a href="03.html">
             
                     
-                    (На Windows) Сообщение WM_KEYDOWN послано приложению
+                    Проверка списка HSTS
             
                 </a>
             
@@ -160,7 +160,7 @@
                 <a href="04.html">
             
                     
-                    (На OS X) A KeyDown NSEvent is sent to the app
+                    Резолвинг DNS
             
                 </a>
             
@@ -173,7 +173,20 @@
                 <a href="05.html">
             
                     
-                    (На GNU/Linux) the Xorg server listens for keycodes
+                    Процесс ARP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="06.html">
+            
+                <a href="06.html">
+            
+                    
+                    Открытие сокета
             
                 </a>
             
@@ -216,7 +229,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >(На OS X) A KeyDown NSEvent is sent to the app</a>
+        <a href=".." >Резолвинг DNS</a>
     </h1>
 </div>
 
@@ -231,7 +244,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>The interrupt signal triggers an interrupt event in the I/O Kit kext keyboard driver. The driver translates the signal into a key code which is passed to the OS X WindowServer process. Resultantly, the WindowServer dispatches an event to any appropriate (e.g. active or listening) applications through their Mach port where it is placed into an event queue. Events can then be read from this queue by threads with sufficient privileges calling the mach_ipc_dispatch function. This most commonly occurs through, and is handled by, an NSApplication main event loop, via an NSEvent of NSEventType KeyDown.</p>
+                                <p>DNS lookup
+Browser checks if the domain is in its cache. (to see the DNS Cache in Chrome, go to chrome://net-internals/#dns).
+If not found, the browser calls gethostbyname library function (varies by OS) to do the lookup.
+gethostbyname checks if the hostname can be resolved by reference in the local hosts file (whose location varies by OS) before trying to resolve the hostname through DNS.
+If gethostbyname does not have it cached nor can find it in the hosts file then it makes a request to the DNS server configured in the network stack. This is typically the local router or the ISP&apos;s caching DNS server.
+If the DNS server is on the same subnet the network library follows the ARP process below for the DNS server.
+If the DNS server is on a different subnet, the network library follows the ARP process below for the default gateway IP.</p>
 
                                 
                                 </section>
@@ -259,12 +278,12 @@
 
             
                 
-                <a href="03.html" class="navigation navigation-prev " aria-label="Previous page: (На Windows) Сообщение WM_KEYDOWN послано приложению">
+                <a href="03.html" class="navigation navigation-prev " aria-label="Previous page: Проверка списка HSTS">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="05.html" class="navigation navigation-next " aria-label="Next page: (На GNU/Linux) the Xorg server listens for keycodes">
+                <a href="05.html" class="navigation navigation-next " aria-label="Next page: Процесс ARP">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -275,7 +294,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"(На OS X) A KeyDown NSEvent is sent to the app","level":"1.2.4","depth":2,"next":{"title":"(На GNU/Linux) the Xorg server listens for keycodes","level":"1.2.5","depth":2,"path":"WHW/05.md","ref":"WHW/05.md","articles":[]},"previous":{"title":"(На Windows) Сообщение WM_KEYDOWN послано приложению","level":"1.2.3","depth":2,"path":"WHW/03.md","ref":"WHW/03.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WHW/04.md","mtime":"2018-09-29T12:11:59.305Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-29T12:12:58.783Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Резолвинг DNS","level":"1.2.4","depth":2,"next":{"title":"Процесс ARP","level":"1.2.5","depth":2,"path":"WHW/05.md","ref":"WHW/05.md","articles":[]},"previous":{"title":"Проверка списка HSTS","level":"1.2.3","depth":2,"path":"WHW/03.md","ref":"WHW/03.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WHW/04.md","mtime":"2018-09-29T13:37:24.013Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-29T13:38:24.993Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
