@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>(На GNU/Linux) the Xorg server listens for keycodes · GitBook</title>
+        <title>Процесс ARP · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -56,6 +56,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
+    
+    <link rel="next" href="06.html" />
     
     
     <link rel="prev" href="04.html" />
@@ -132,7 +134,7 @@
                 <a href="02.html">
             
                     
-                    Отжалась клавиша "enter"
+                    Парсинг адреса
             
                 </a>
             
@@ -145,7 +147,7 @@
                 <a href="03.html">
             
                     
-                    (На Windows) Сообщение WM_KEYDOWN послано приложению
+                    Проверка списка HSTS
             
                 </a>
             
@@ -158,7 +160,7 @@
                 <a href="04.html">
             
                     
-                    (На OS X) A KeyDown NSEvent is sent to the app
+                    Резолвинг DNS
             
                 </a>
             
@@ -171,7 +173,20 @@
                 <a href="05.html">
             
                     
-                    (На GNU/Linux) the Xorg server listens for keycodes
+                    Процесс ARP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="06.html">
+            
+                <a href="06.html">
+            
+                    
+                    Открытие сокета
             
                 </a>
             
@@ -214,7 +229,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >(На GNU/Linux) the Xorg server listens for keycodes</a>
+        <a href=".." >Процесс ARP</a>
     </h1>
 </div>
 
@@ -229,7 +244,35 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>When a graphical X server is used, X will use the generic event driver evdev to acquire the keypress. A re-mapping of keycodes to scancodes is made with X server specific keymaps and rules. When the scancode mapping of the key pressed is complete, the X server sends the character to the window manager (DWM, metacity, i3, etc), so the window manager in turn sends the character to the focused window. The graphical API of the window that receives the character prints the appropriate font symbol in the appropriate focused field.</p>
+                                <p>ARP process
+In order to send an ARP (Address Resolution Protocol) broadcast the network stack library needs the target IP address to look up. It also needs to know the MAC address of the interface it will use to send out the ARP broadcast.</p>
+<p>The ARP cache is first checked for an ARP entry for our target IP. If it is in the cache, the library function returns the result: Target IP = MAC.</p>
+<p>If the entry is not in the ARP cache:</p>
+<p>The route table is looked up, to see if the Target IP address is on any of the subnets on the local route table. If it is, the library uses the interface associated with that subnet. If it is not, the library uses the interface that has the subnet of our default gateway.
+The MAC address of the selected network interface is looked up.
+The network library sends a Layer 2 (data link layer of the OSI model) ARP request:
+ARP Request:</p>
+<p>Sender MAC: interface:mac:address:here
+Sender IP: interface.ip.goes.here
+Target MAC: FF:FF:FF:FF:FF:FF (Broadcast)
+Target IP: target.ip.goes.here
+Depending on what type of hardware is between the computer and the router:</p>
+<p>Directly connected:</p>
+<p>If the computer is directly connected to the router the router responds with an ARP Reply (see below)
+Hub:</p>
+<p>If the computer is connected to a hub, the hub will broadcast the ARP request out all other ports. If the router is connected on the same &quot;wire&quot;, it will respond with an ARP Reply (see below).
+Switch:</p>
+<p>If the computer is connected to a switch, the switch will check its local CAM/MAC table to see which port has the MAC address we are looking for. If the switch has no entry for the MAC address it will rebroadcast the ARP request to all other ports.
+If the switch has an entry in the MAC/CAM table it will send the ARP request to the port that has the MAC address we are looking for.
+If the router is on the same &quot;wire&quot;, it will respond with an ARP Reply (see below)
+ARP Reply:</p>
+<p>Sender MAC: target:mac:address:here
+Sender IP: target.ip.goes.here
+Target MAC: interface:mac:address:here
+Target IP: interface.ip.goes.here
+Now that the network library has the IP address of either our DNS server or the default gateway it can resume its DNS process:</p>
+<p>Port 53 is opened to send a UDP request to DNS server (if the response size is too large, TCP will be used instead).
+If the local/ISP DNS server does not have it, then a recursive search is requested and that flows up the list of DNS servers until the SOA is reached, and if found an answer is returned.</p>
 
                                 
                                 </section>
@@ -257,10 +300,14 @@
 
             
                 
-                <a href="04.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: (На OS X) A KeyDown NSEvent is sent to the app">
+                <a href="04.html" class="navigation navigation-prev " aria-label="Previous page: Резолвинг DNS">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="06.html" class="navigation navigation-next " aria-label="Next page: Открытие сокета">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -269,7 +316,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"(На GNU/Linux) the Xorg server listens for keycodes","level":"1.2.5","depth":2,"previous":{"title":"(На OS X) A KeyDown NSEvent is sent to the app","level":"1.2.4","depth":2,"path":"WHW/04.md","ref":"WHW/04.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WHW/05.md","mtime":"2018-09-29T12:11:59.305Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-29T12:12:58.783Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Процесс ARP","level":"1.2.5","depth":2,"next":{"title":"Открытие сокета","level":"1.2.6","depth":2,"path":"WHW/06.md","ref":"WHW/06.md","articles":[]},"previous":{"title":"Резолвинг DNS","level":"1.2.4","depth":2,"path":"WHW/04.md","ref":"WHW/04.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WHW/05.md","mtime":"2018-09-29T13:37:24.013Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-29T13:38:24.993Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

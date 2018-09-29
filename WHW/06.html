@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Парсинг адреса · GitBook</title>
+        <title>Открытие сокета · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="03.html" />
     
-    
-    <link rel="prev" href="01.html" />
+    <link rel="prev" href="05.html" />
     
 
     </head>
@@ -129,7 +127,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.2" data-path="02.html">
+        <li class="chapter " data-level="1.2.2" data-path="02.html">
             
                 <a href="02.html">
             
@@ -181,7 +179,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6" data-path="06.html">
+        <li class="chapter active" data-level="1.2.6" data-path="06.html">
             
                 <a href="06.html">
             
@@ -229,7 +227,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Парсинг адреса</a>
+        <a href=".." >Открытие сокета</a>
     </h1>
 </div>
 
@@ -244,17 +242,35 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>Parse URL
-The browser now has the following information contained in the URL (Uniform Resource Locator):</p>
-<p>Protocol &quot;http&quot;
-Use &apos;Hyper Text Transfer Protocol&apos;
-Resource &quot;/&quot;
-Retrieve main (index) page
-Is it a URL or a search term?
-When no protocol or valid domain name is given the browser proceeds to feed the text given in the address box to the browser&apos;s default web search engine. In many cases the URL has a special piece of text appended to it to tell the search engine that it came from a particular browser&apos;s URL bar.</p>
-<p>Convert non-ASCII Unicode characters in hostname
-The browser checks the hostname for characters that are not in a-z, A-Z, 0-9, -, or ..
-Since the hostname is google.com there won&apos;t be any, but if there were the browser would apply Punycode encoding to the hostname portion of the URL.</p>
+                                <p>Opening of a socket
+Once the browser receives the IP address of the destination server, it takes that and the given port number from the URL (the HTTP protocol defaults to port 80, and HTTPS to port 443), and makes a call to the system library function named socket and requests a TCP socket stream - AF_INET/AF_INET6 and SOCK_STREAM.</p>
+<p>This request is first passed to the Transport Layer where a TCP segment is crafted. The destination port is added to the header, and a source port is chosen from within the kernel&apos;s dynamic port range (ip_local_port_range in Linux).
+This segment is sent to the Network Layer, which wraps an additional IP header. The IP address of the destination server as well as that of the current machine is inserted to form a packet.
+The packet next arrives at the Link Layer. A frame header is added that includes the MAC address of the machine&apos;s NIC as well as the MAC address of the gateway (local router). As before, if the kernel does not know the MAC address of the gateway, it must broadcast an ARP query to find it.
+At this point the packet is ready to be transmitted through either:</p>
+<p>Ethernet
+WiFi
+Cellular data network
+For most home or small business Internet connections the packet will pass from your computer, possibly through a local network, and then through a modem (MOdulator/DEModulator) which converts digital 1&apos;s and 0&apos;s into an analog signal suitable for transmission over telephone, cable, or wireless telephony connections. On the other end of the connection is another modem which converts the analog signal back into digital data to be processed by the next network node where the from and to addresses would be analyzed further.</p>
+<p>Most larger businesses and some newer residential connections will have fiber or direct Ethernet connections in which case the data remains digital and is passed directly to the next network node for processing.</p>
+<p>Eventually, the packet will reach the router managing the local subnet. From there, it will continue to travel to the autonomous system&apos;s (AS) border routers, other ASes, and finally to the destination server. Each router along the way extracts the destination address from the IP header and routes it to the appropriate next hop. The time to live (TTL) field in the IP header is decremented by one for each router that passes. The packet will be dropped if the TTL field reaches zero or if the current router has no space in its queue (perhaps due to network congestion).</p>
+<p>This send and receive happens multiple times following the TCP connection flow:</p>
+<p>Client chooses an initial sequence number (ISN) and sends the packet to the server with the SYN bit set to indicate it is setting the ISN
+Server receives SYN and if it&apos;s in an agreeable mood:
+Server chooses its own initial sequence number
+Server sets SYN to indicate it is choosing its ISN
+Server copies the (client ISN +1) to its ACK field and adds the ACK flag to indicate it is acknowledging receipt of the first packet
+Client acknowledges the connection by sending a packet:
+Increases its own sequence number
+Increases the receiver acknowledgment number
+Sets ACK field
+Data is transferred as follows:
+As one side sends N data bytes, it increases its SEQ by that number
+When the other side acknowledges receipt of that packet (or a string of packets), it sends an ACK packet with the ACK value equal to the last received sequence from the other
+To close the connection:
+The closer sends a FIN packet
+The other sides ACKs the FIN packet and sends its own FIN
+The closer acknowledges the other side&apos;s FIN with an ACK</p>
 
                                 
                                 </section>
@@ -282,14 +298,10 @@ Since the hostname is google.com there won&apos;t be any, but if there were the 
 
             
                 
-                <a href="01.html" class="navigation navigation-prev " aria-label="Previous page: Нажата клавиши "g" на клавиатуре">
+                <a href="05.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Процесс ARP">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="03.html" class="navigation navigation-next " aria-label="Next page: Проверка списка HSTS">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -298,7 +310,7 @@ Since the hostname is google.com there won&apos;t be any, but if there were the 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Парсинг адреса","level":"1.2.2","depth":2,"next":{"title":"Проверка списка HSTS","level":"1.2.3","depth":2,"path":"WHW/03.md","ref":"WHW/03.md","articles":[]},"previous":{"title":"Нажата клавиши \"g\" на клавиатуре","level":"1.2.1","depth":2,"path":"WHW/01.md","ref":"WHW/01.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WHW/02.md","mtime":"2018-09-29T13:37:24.013Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-29T13:38:24.993Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Открытие сокета","level":"1.2.6","depth":2,"previous":{"title":"Процесс ARP","level":"1.2.5","depth":2,"path":"WHW/05.md","ref":"WHW/05.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WHW/06.md","mtime":"2018-09-29T13:37:24.013Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-29T13:38:24.993Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
