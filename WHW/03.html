@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Проверка списка HSTS · GitBook</title>
+        <title>TLS · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -107,7 +107,7 @@
                 <a href="./">
             
                     
-                    Что происходит когда...
+                    Что происходит когда пользователь открывает веб-страницу
             
                 </a>
             
@@ -121,7 +121,7 @@
                 <a href="01.html">
             
                     
-                    Нажата клавиши "g" на клавиатуре
+                    DNS
             
                 </a>
             
@@ -134,7 +134,7 @@
                 <a href="02.html">
             
                     
-                    Парсинг адреса
+                    Сокеты
             
                 </a>
             
@@ -147,7 +147,7 @@
                 <a href="03.html">
             
                     
-                    Проверка списка HSTS
+                    TLS
             
                 </a>
             
@@ -160,33 +160,7 @@
                 <a href="04.html">
             
                     
-                    Резолвинг DNS
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.5" data-path="05.html">
-            
-                <a href="05.html">
-            
-                    
-                    Процесс ARP
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.6" data-path="06.html">
-            
-                <a href="06.html">
-            
-                    
-                    Открытие сокета
+                    HTTP
             
                 </a>
             
@@ -229,7 +203,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Проверка списка HSTS</a>
+        <a href=".." >TLS</a>
     </h1>
 </div>
 
@@ -244,8 +218,16 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p><strong>&#x41F;&#x440;&#x43E;&#x432;&#x435;&#x440;&#x43A;&#x430; &#x441;&#x43F;&#x438;&#x441;&#x43A;&#x430; HSTS</strong></p>
-<p> &#x411;&#x440;&#x430;&#x443;&#x437;&#x435;&#x440; &#x43F;&#x440;&#x43E;&#x432;&#x435;&#x440;&#x44F;&#x435;&#x442; &#x441;&#x432;&#x43E;&#x439; &quot;&#x43F;&#x440;&#x435;&#x434;&#x437;&#x430;&#x433;&#x440;&#x443;&#x436;&#x435;&#x43D;&#x43D;&#x44B;&#x439;&quot; &#x441;&#x43F;&#x438;&#x441;&#x43E;&#x43A; HSTS (HTTP Strict Transport Security, &#x441;&#x442;&#x440;&#x43E;&#x433;&#x430;&#x44F; &#x431;&#x435;&#x437;&#x43E;&#x43F;&#x430;&#x441;&#x43D;&#x43E;&#x441;&#x442;&#x44C; &#x442;&#x440;&#x430;&#x43D;&#x441;&#x43F;&#x43E;&#x440;&#x442;&#x430; http). &#x42D;&#x442;&#x43E; &#x441;&#x43F;&#x438;&#x441;&#x43E;&#x43A; &#x432;&#x435;&#x431;&#x441;&#x430;&#x439;&#x442;&#x43E;&#x432;, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x439; &#x437;&#x430;&#x43F;&#x440;&#x43E;&#x441;&#x438;&#x43B;&#x438;, &#x447;&#x442;&#x43E;&#x431; &#x441; &#x43D;&#x438;&#x43C;&#x438; &#x441;&#x432;&#x44F;&#x437;&#x44B;&#x432;&#x430;&#x43B;&#x438;&#x441;&#x44C; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; &#x43F;&#x43E; https. &#x415;&#x441;&#x43B;&#x438; &#x441;&#x430;&#x439;&#x442; &#x432; &#x44D;&#x442;&#x43E;&#x43C; &#x441;&#x43F;&#x438;&#x441;&#x43A;&#x435;, &#x431;&#x440;&#x430;&#x443;&#x437;&#x435;&#x440; &#x431;&#x443;&#x434;&#x435;&#x442; &#x43F;&#x43E;&#x441;&#x44B;&#x43B;&#x430;&#x442;&#x44C; &#x437;&#x430;&#x43F;&#x440;&#x43E;&#x441;&#x44B; &#x43F;&#x43E; https &#x432;&#x43C;&#x435;&#x441;&#x442;&#x43E; http. &#x412; &#x43F;&#x440;&#x43E;&#x442;&#x438;&#x432;&#x43D;&#x43E;&#x43C; &#x441;&#x43B;&#x443;&#x447;&#x430;&#x435; &#x43D;&#x430;&#x447;&#x430;&#x43B;&#x44C;&#x43D;&#x44B;&#x439; &#x437;&#x430;&#x43F;&#x440;&#x43E;&#x441; &#x431;&#x443;&#x434;&#x435;&#x442; &#x43F;&#x43E;&#x441;&#x43B;&#x430;&#x43D; &#x43F;&#x43E; http. &#x412;&#x435;&#x431;&#x441;&#x430;&#x439;&#x442; &#x442;&#x430;&#x43A;&#x436;&#x435; &#x43C;&#x43E;&#x436;&#x435;&#x442; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x44C; &#x43F;&#x43E;&#x43B;&#x438;&#x442;&#x438;&#x43A;&#x443; HSTS &#x431;&#x435;&#x437; &#x442;&#x43E;&#x433;&#x43E;, &#x447;&#x442;&#x43E;&#x431; &#x431;&#x44B;&#x442;&#x44C; &#x432; &#x441;&#x43F;&#x438;&#x441;&#x43A;&#x435; HSTS. &#x412; &#x43F;&#x435;&#x440;&#x432;&#x44B;&#x439; http &#x437;&#x430;&#x43F;&#x440;&#x43E;&#x441; &#x43A; &#x44D;&#x442;&#x43E;&#x43C;&#x443; &#x432;&#x435;&#x431;&#x441;&#x430;&#x439;&#x442;&#x443; &#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x435;&#x43B;&#x44C; &#x43F;&#x43E;&#x43B;&#x443;&#x447;&#x438;&#x442; &#x43E;&#x442;&#x432;&#x435;&#x442;, &#x437;&#x430;&#x43F;&#x440;&#x430;&#x448;&#x438;&#x432;&#x430;&#x44E;&#x449;&#x438;&#x439;, &#x447;&#x442;&#x43E; &#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x435;&#x43B;&#x44C; &#x434;&#x43E;&#x43B;&#x436;&#x435;&#x43D; &#x43F;&#x43E;&#x441;&#x44B;&#x43B;&#x430;&#x442;&#x44C; &#x437;&#x430;&#x43F;&#x440;&#x43E;&#x441;&#x44B; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; &#x43F;&#x43E; https. &#x41E;&#x434;&#x43D;&#x430;&#x43A;&#x43E;, &#x44D;&#x442;&#x43E;&#x442; &#x435;&#x434;&#x438;&#x43D;&#x441;&#x442;&#x432;&#x435;&#x43D;&#x43D;&#x44B;&#x439; &#x437;&#x430;&#x43F;&#x440;&#x43E;&#x441; &#x43F;&#x43E; http &#x43C;&#x43E;&#x436;&#x435;&#x442; &#x43F;&#x43E;&#x442;&#x435;&#x43D;&#x446;&#x438;&#x430;&#x43B;&#x44C;&#x43D;&#x43E; &#x43E;&#x441;&#x442;&#x430;&#x432;&#x438;&#x442;&#x44C; &#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x435;&#x43B;&#x44F; &#x443;&#x44F;&#x437;&#x432;&#x438;&#x43C;&#x44B;&#x43C; &#x43A; &#x430;&#x442;&#x430;&#x43A;&#x435; &#x43F;&#x43E;&#x43D;&#x438;&#x436;&#x435;&#x43D;&#x438;&#x44F; &#x43F;&#x440;&#x43E;&#x442;&#x43E;&#x43A;&#x43E;&#x43B;&#x430;, &#x432;&#x43E;&#x442; &#x43F;&#x43E;&#x447;&#x435;&#x43C;&#x443; &#x441;&#x43F;&#x438;&#x441;&#x43E;&#x43A; HSTS &#x432;&#x43A;&#x43B;&#x44E;&#x447;&#x435;&#x43D; &#x432;&#x43E; &#x432;&#x441;&#x435; &#x441;&#x43E;&#x432;&#x440;&#x435;&#x43C;&#x435;&#x43D;&#x43D;&#x44B;&#x435; &#x431;&#x440;&#x430;&#x443;&#x437;&#x435;&#x440;&#x44B;</p>
+                                <h1 id="tls-handshake">TLS handshake</h1>
+<ul>
+<li>&#x41A;&#x43B;&#x438;&#x435;&#x43D;&#x442;&#x441;&#x43A;&#x438;&#x439; &#x43A;&#x43E;&#x43C;&#x43F;&#x44C;&#x44E;&#x442;&#x435;&#x440; &#x43E;&#x442;&#x43F;&#x440;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x442; &#x441;&#x43E;&#x43E;&#x431;&#x449;&#x435;&#x43D;&#x438;&#x435; ClientHello &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x443; &#x441;&#x43E; &#x441;&#x432;&#x43E;&#x435;&#x439; &#x432;&#x435;&#x440;&#x441;&#x438;&#x435;&#x439; &#x43F;&#x440;&#x43E;&#x442;&#x43E;&#x43A;&#x43E;&#x43B;&#x430; TLS, &#x441;&#x43F;&#x438;&#x441;&#x43A;&#x43E;&#x43C; &#x43F;&#x43E;&#x434;&#x434;&#x435;&#x440;&#x436;&#x438;&#x432;&#x430;&#x435;&#x43C;&#x44B;&#x445; &#x430;&#x43B;&#x433;&#x43E;&#x440;&#x438;&#x442;&#x43C;&#x43E;&#x432; &#x448;&#x438;&#x444;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x44F; &#x438; &#x43C;&#x435;&#x442;&#x43E;&#x434;&#x43E;&#x432; &#x43A;&#x43E;&#x43C;&#x43F;&#x440;&#x435;&#x441;&#x441;&#x438;&#x438; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x445;.</li>
+<li>&#x421;&#x435;&#x440;&#x432;&#x435;&#x440; &#x43E;&#x442;&#x432;&#x435;&#x447;&#x430;&#x435;&#x442; &#x43A;&#x43B;&#x438;&#x435;&#x43D;&#x442;&#x443; &#x441;&#x43E;&#x43E;&#x431;&#x449;&#x435;&#x43D;&#x438;&#x435;&#x43C; ServerHello, &#x441;&#x43E;&#x434;&#x435;&#x440;&#x436;&#x430;&#x449;&#x438;&#x43C; &#x432;&#x435;&#x440;&#x441;&#x438;&#x44E; TLS, &#x432;&#x44B;&#x431;&#x440;&#x430;&#x43D;&#x43D;&#x44B;&#x439; &#x43C;&#x435;&#x442;&#x43E;&#x434; &#x448;&#x438;&#x444;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x44F;, &#x432;&#x44B;&#x431;&#x440;&#x430;&#x43D;&#x43D;&#x44B;&#x435; &#x43C;&#x435;&#x442;&#x43E;&#x434;&#x44B; &#x43A;&#x43E;&#x43C;&#x43F;&#x440;&#x435;&#x441;&#x441;&#x438;&#x438; &#x438; &#x43F;&#x443;&#x431;&#x43B;&#x438;&#x447;&#x43D;&#x44B;&#x439; &#x441;&#x435;&#x440;&#x442;&#x438;&#x444;&#x438;&#x43A;&#x430;&#x442; &#x441;&#x435;&#x440;&#x432;&#x438;&#x441;&#x430;, &#x43F;&#x43E;&#x434;&#x43F;&#x438;&#x441;&#x430;&#x43D;&#x43D;&#x44B;&#x439; &#x446;&#x435;&#x43D;&#x442;&#x440;&#x43E;&#x43C; &#x441;&#x435;&#x440;&#x442;&#x438;&#x444;&#x438;&#x43A;&#x430;&#x446;&#x438;&#x438;. &#x421;&#x435;&#x440;&#x442;&#x438;&#x444;&#x438;&#x43A;&#x430;&#x442; &#x441;&#x43E;&#x434;&#x435;&#x440;&#x436;&#x438;&#x442; &#x43F;&#x443;&#x431;&#x43B;&#x438;&#x447;&#x43D;&#x44B;&#x439; &#x43A;&#x43B;&#x44E;&#x447;, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x439; &#x431;&#x443;&#x434;&#x435;&#x442; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x44C;&#x441;&#x44F; &#x43A;&#x43B;&#x438;&#x435;&#x43D;&#x442;&#x43E;&#x43C; &#x434;&#x43B;&#x44F; &#x448;&#x438;&#x444;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x44F; &#x43E;&#x441;&#x442;&#x430;&#x432;&#x448;&#x435;&#x439;&#x441;&#x44F; &#x447;&#x430;&#x441;&#x442;&#x438; &#x43F;&#x440;&#x43E;&#x446;&#x435;&#x434;&#x443;&#x440;&#x44B; &#xAB;&#x440;&#x443;&#x43A;&#x43E;&#x43F;&#x43E;&#x436;&#x430;&#x442;&#x438;&#x44F;&#xBB; (handshake), &#x43F;&#x43E;&#x43A;&#x430; &#x43D;&#x435; &#x431;&#x443;&#x434;&#x435;&#x442; &#x441;&#x43E;&#x433;&#x43B;&#x430;&#x441;&#x43E;&#x432;&#x430;&#x43D; &#x441;&#x438;&#x43C;&#x43C;&#x435;&#x442;&#x440;&#x438;&#x447;&#x43D;&#x44B;&#x439; &#x43A;&#x43B;&#x44E;&#x447;.</li>
+<li>&#x41A;&#x43B;&#x438;&#x435;&#x43D;&#x442; &#x43F;&#x43E;&#x434;&#x442;&#x432;&#x435;&#x440;&#x436;&#x434;&#x430;&#x435;&#x442; &#x441;&#x435;&#x440;&#x442;&#x438;&#x444;&#x438;&#x43A;&#x430;&#x442; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x430; &#x441; &#x43F;&#x43E;&#x43C;&#x43E;&#x449;&#x44C;&#x44E; &#x441;&#x432;&#x43E;&#x435;&#x433;&#x43E; &#x441;&#x43F;&#x438;&#x441;&#x43A;&#x430; &#x446;&#x435;&#x43D;&#x442;&#x440;&#x43E;&#x432; &#x441;&#x435;&#x440;&#x442;&#x438;&#x444;&#x438;&#x43A;&#x430;&#x446;&#x438;&#x438;. &#x415;&#x441;&#x43B;&#x438; &#x441;&#x435;&#x440;&#x442;&#x438;&#x444;&#x438;&#x43A;&#x430;&#x442; &#x43F;&#x43E;&#x434;&#x43F;&#x438;&#x441;&#x430;&#x43D; &#x446;&#x435;&#x43D;&#x442;&#x440;&#x43E;&#x43C; &#x438;&#x437; &#x441;&#x43F;&#x438;&#x441;&#x43A;&#x430;, &#x442;&#x43E; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x443; &#x43C;&#x43E;&#x436;&#x43D;&#x43E; &#x434;&#x43E;&#x432;&#x435;&#x440;&#x44F;&#x442;&#x44C;, &#x438; &#x43A;&#x43B;&#x438;&#x435;&#x43D;&#x442; &#x433;&#x435;&#x43D;&#x435;&#x440;&#x438;&#x440;&#x443;&#x435;&#x442; &#x441;&#x442;&#x440;&#x43E;&#x43A;&#x443; &#x43F;&#x441;&#x435;&#x432;&#x434;&#x43E;&#x441;&#x43B;&#x443;&#x447;&#x430;&#x439;&#x43D;&#x44B;&#x445; &#x431;&#x430;&#x439;&#x442;&#x43E;&#x432; &#x438; &#x448;&#x438;&#x444;&#x440;&#x443;&#x435;&#x442; &#x435;&#x451; &#x441; &#x43F;&#x43E;&#x43C;&#x43E;&#x449;&#x44C;&#x44E; &#x43F;&#x443;&#x431;&#x43B;&#x438;&#x447;&#x43D;&#x43E;&#x433;&#x43E; &#x43A;&#x43B;&#x44E;&#x447;&#x430; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x430;. &#x42D;&#x442;&#x438; &#x441;&#x43B;&#x443;&#x447;&#x430;&#x439;&#x43D;&#x44B;&#x435; &#x431;&#x430;&#x439;&#x442;&#x44B; &#x43C;&#x43E;&#x433;&#x443;&#x442; &#x431;&#x44B;&#x442;&#x44C; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x43D;&#x44B; &#x434;&#x43B;&#x44F; &#x43E;&#x43F;&#x440;&#x435;&#x434;&#x435;&#x43B;&#x435;&#x43D;&#x438;&#x44F; &#x441;&#x438;&#x43C;&#x43C;&#x435;&#x442;&#x440;&#x438;&#x447;&#x43D;&#x43E;&#x433;&#x43E; &#x43A;&#x43B;&#x44E;&#x447;&#x430;.</li>
+<li>&#x421;&#x435;&#x440;&#x432;&#x435;&#x440; &#x440;&#x430;&#x441;&#x448;&#x438;&#x444;&#x440;&#x43E;&#x432;&#x44B;&#x432;&#x430;&#x435;&#x442; &#x441;&#x43B;&#x443;&#x447;&#x430;&#x439;&#x43D;&#x44B;&#x435; &#x431;&#x430;&#x439;&#x442;&#x44B; &#x441; &#x43F;&#x43E;&#x43C;&#x43E;&#x449;&#x44C;&#x44E; &#x441;&#x432;&#x43E;&#x435;&#x433;&#x43E; &#x441;&#x435;&#x43A;&#x440;&#x435;&#x442;&#x43D;&#x43E;&#x433;&#x43E; &#x43A;&#x43B;&#x44E;&#x447;&#x430; &#x438; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x443;&#x435;&#x442; &#x44D;&#x442;&#x438; &#x431;&#x430;&#x439;&#x442;&#x44B; &#x434;&#x43B;&#x44F; &#x433;&#x435;&#x43D;&#x435;&#x440;&#x430;&#x446;&#x438;&#x438; &#x441;&#x432;&#x43E;&#x435;&#x439; &#x43A;&#x43E;&#x43F;&#x438;&#x438; &#x441;&#x438;&#x43C;&#x43C;&#x435;&#x442;&#x440;&#x438;&#x447;&#x43D;&#x43E;&#x433;&#x43E; &#x43C;&#x430;&#x441;&#x442;&#x435;&#x440;-&#x43A;&#x43B;&#x44E;&#x447;&#x430;.</li>
+<li>&#x41A;&#x43B;&#x438;&#x435;&#x43D;&#x442; &#x43E;&#x442;&#x43F;&#x440;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x442; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x443; &#x441;&#x43E;&#x43E;&#x431;&#x449;&#x435;&#x43D;&#x438;&#x435; Finished, &#x448;&#x438;&#x444;&#x440;&#x443;&#x44F; &#x445;&#x435;&#x448; &#x43F;&#x435;&#x440;&#x435;&#x434;&#x430;&#x447;&#x438; &#x441; &#x43F;&#x43E;&#x43C;&#x43E;&#x449;&#x44C;&#x44E; &#x441;&#x438;&#x43C;&#x43C;&#x435;&#x442;&#x440;&#x438;&#x447;&#x43D;&#x43E;&#x433;&#x43E; &#x43A;&#x43B;&#x44E;&#x447;&#x430;.</li>
+<li>&#x421;&#x435;&#x440;&#x432;&#x435;&#x440; &#x433;&#x435;&#x43D;&#x435;&#x440;&#x438;&#x440;&#x443;&#x435;&#x442; &#x441;&#x43E;&#x431;&#x441;&#x442;&#x432;&#x435;&#x43D;&#x43D;&#x44B;&#x439; &#x445;&#x435;&#x448;, &#x430; &#x437;&#x430;&#x442;&#x435;&#x43C; &#x440;&#x430;&#x441;&#x448;&#x438;&#x444;&#x440;&#x43E;&#x432;&#x44B;&#x432;&#x430;&#x435;&#x442; &#x43F;&#x43E;&#x43B;&#x443;&#x447;&#x435;&#x43D;&#x43D;&#x44B;&#x439; &#x43E;&#x442; &#x43A;&#x43B;&#x438;&#x435;&#x43D;&#x442;&#x430; &#x445;&#x435;&#x448;, &#x447;&#x442;&#x43E;&#x431;&#x44B; &#x43F;&#x440;&#x43E;&#x432;&#x435;&#x440;&#x438;&#x442;&#x44C;, &#x441;&#x43E;&#x432;&#x43F;&#x430;&#x434;&#x451;&#x442; &#x43B;&#x438; &#x43E;&#x43D; &#x441; &#x441;&#x43E;&#x431;&#x441;&#x442;&#x432;&#x435;&#x43D;&#x43D;&#x44B;&#x43C;. &#x415;&#x441;&#x43B;&#x438; &#x441;&#x43E;&#x432;&#x43F;&#x430;&#x434;&#x435;&#x43D;&#x438;&#x435; &#x43E;&#x431;&#x43D;&#x430;&#x440;&#x443;&#x436;&#x435;&#x43D;&#x43E;, &#x441;&#x435;&#x440;&#x432;&#x435;&#x440; &#x43E;&#x442;&#x43F;&#x440;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x442; &#x43A;&#x43B;&#x438;&#x435;&#x43D;&#x442;&#x443; &#x441;&#x43E;&#x431;&#x441;&#x442;&#x432;&#x435;&#x43D;&#x43D;&#x44B;&#x439; &#x43E;&#x442;&#x432;&#x435;&#x442; Finished, &#x442;&#x430;&#x43A;&#x436;&#x435; &#x437;&#x430;&#x448;&#x438;&#x444;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x43D;&#x44B;&#x439; &#x441;&#x438;&#x43C;&#x43C;&#x435;&#x442;&#x440;&#x438;&#x447;&#x43D;&#x44B;&#x43C; &#x43A;&#x43B;&#x44E;&#x447;&#x43E;&#x43C;.</li>
+<li>&#x41F;&#x43E;&#x441;&#x43B;&#x435; &#x44D;&#x442;&#x43E;&#x433;&#x43E; TLS-&#x441;&#x435;&#x441;&#x441;&#x438;&#x44F; &#x43F;&#x435;&#x440;&#x435;&#x434;&#x430;&#x451;&#x442; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435; &#x43F;&#x440;&#x438;&#x43B;&#x43E;&#x436;&#x435;&#x43D;&#x438;&#x44F; (HTTP), &#x437;&#x430;&#x448;&#x438;&#x444;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x43D;&#x44B;&#x435; &#x441; &#x43F;&#x43E;&#x43C;&#x43E;&#x449;&#x44C;&#x44E; &#x43F;&#x43E;&#x434;&#x442;&#x432;&#x435;&#x440;&#x436;&#x434;&#x451;&#x43D;&#x43D;&#x43E;&#x433;&#x43E; &#x441;&#x438;&#x43C;&#x43C;&#x435;&#x442;&#x440;&#x438;&#x447;&#x43D;&#x43E;&#x433;&#x43E; &#x43A;&#x43B;&#x44E;&#x447;&#x430;.</li>
+</ul>
 
                                 
                                 </section>
@@ -273,12 +255,12 @@
 
             
                 
-                <a href="02.html" class="navigation navigation-prev " aria-label="Previous page: Парсинг адреса">
+                <a href="02.html" class="navigation navigation-prev " aria-label="Previous page: Сокеты">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="04.html" class="navigation navigation-next " aria-label="Next page: Резолвинг DNS">
+                <a href="04.html" class="navigation navigation-next " aria-label="Next page: HTTP">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -289,7 +271,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Проверка списка HSTS","level":"1.2.3","depth":2,"next":{"title":"Резолвинг DNS","level":"1.2.4","depth":2,"path":"WHW/04.md","ref":"WHW/04.md","articles":[]},"previous":{"title":"Парсинг адреса","level":"1.2.2","depth":2,"path":"WHW/02.md","ref":"WHW/02.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WHW/03.md","mtime":"2018-10-03T13:34:03.550Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-03T13:35:02.861Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"TLS","level":"1.2.3","depth":2,"next":{"title":"HTTP","level":"1.2.4","depth":2,"path":"WHW/04.md","ref":"WHW/04.md","articles":[]},"previous":{"title":"Сокеты","level":"1.2.2","depth":2,"path":"WHW/02.md","ref":"WHW/02.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"WHW/03.md","mtime":"2019-08-04T13:37:16.854Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-04T13:38:05.628Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
