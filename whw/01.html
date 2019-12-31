@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>DNS - Tech Docs</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Technical Docs for interview.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="expanded "><a href="../whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="expanded "><a href="../whw/01.html" class="active"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="expanded "><a href="../whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="expanded "><a href="../whw/03.html"><strong aria-hidden="true">2.3.</strong> TLS</a></li><li class="expanded "><a href="../whw/04.html"><strong aria-hidden="true">2.4.</strong> HTTP</a></li><li class="spacer"></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Tech Docs</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#Определение-dns" id="Определение-dns">Определение DNS</a></h1>
+<ul>
+<li>
+<p>Браузер проверяет наличие домена в своём кэше. Например, чтоб увидеть кэш Google Chrome следует ввести в адресной строке chrome://net-internals/#dns.</p>
+</li>
+<li>
+<p>Если домена там нет, то браузер вызывает библиотечную функцию gethostbyname (отличается в разных ОС) для поиска нужного адреса.</p>
+</li>
+<li>
+<p>Прежде, чем искать домен по DNS gethostbyname пытается найти нужный адрес в файле hosts (его расположение отличается в разных ОС).</p>
+<ul>
+<li>В Linux порядок поиска можно настроить в файле /etc/nsswitch.conf, например, поведение по умолчанию:</li>
+</ul>
+<pre><code class="language-ini">hosts:  files dns
+</code></pre>
+</li>
+<li>
+<p>Если домен нигде не закэширован и отсутствует в файле hosts, gethostbyname отправляет запрос к сетевому DNS-серверу. Как правило, это локальный роутер или DNS-сервер интернет-провайдера.</p>
+</li>
+<li>
+<p>При отправке запроса к DNS-серверу будет использоваться настройка приоритета использования интерфейсов для исходящего трафика (например, файл /etc/gai.conf).</p>
+</li>
+<li>
+<p>Если DNS-сервер находится в той же подсети, то ARP-запрос отправляется этому серверу.</p>
+</li>
+<li>
+<p>Если DNS-сервер находится в другой подсети, то ARP-запрос отправляется на IP-адрес шлюза по умолчанию (default gateway).</p>
+</li>
+<li>
+<p>Если DNS-сервер не может найти IP-адрес имени хоста в кэше, он отправляет запрос резолверу, который специально настроен для получения IP-адреса любого имени хоста.</p>
+<ul>
+<li>Когда резолвер задействован, он сначала проверяет свой собственный кэш, но если он не может найти запись, он связывается с TLD (домен верхнего уровня), вероятно, с сервером com-зоны. Com - это домен верхнего уровня.</li>
+<li>TLD содержит информацию о серверах имен конкретных имен хостов. Зная имя хоста, которое пытается идентифицировать распознаватель, он может найти IP-адреса сервера имен вместе с их именами.</li>
+<li>Резолвер использует IP-адреса для запроса от серверов имен, информацию об IP-адресах, которую он ищет для своего конкретного имени хоста. В зависимости от сервера имен и какой зоны он обрабатывает, он должен найти IP хоста.</li>
+<li>После того, как резолвер обнаружил соответствующий IP-адрес, он возвращается на DNS-сервер, который возвращается в браузер. Повсюду серверы кэшируют имя хоста и его IP в соответствии с ограничениями времени жизни (TTL).</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#Процесс-отправки-arp-запроса" id="Процесс-отправки-arp-запроса">Процесс отправки ARP-запроса</a></h2>
+<p>Для того, чтобы отправить широковещательный ARP-запрос необходимо отыскать целевой IP-адрес, а также знать MAC-адрес интерфейса, который будет использоваться для отправки ARP-запроса (например, настройки из /etc/gai.conf)</p>
+<p>Кэш ARP проверяется для каждого целевого IP-адреса — если адрес есть в кэше, то библиотечная функция возвращает результат: Target IP = MAC.</p>
+<p>Если же записи в кэше нет:</p>
+<ul>
+<li>Проверяется таблица маршрутизации — это делается для того, чтобы узнать, есть ли искомый IP-адрес в какой-либо из подсетей локальной таблицы. Если он там, то запрос посылается с помощью интерфейса, связанного с этой подсетью. Если адрес в таблице не обнаружен, то используется интерфейс подсети шлюза по умолчанию.</li>
+<li>Определяется MAC-адрес выбранного сетевого интерфейса.</li>
+<li>Отправляется ARP-запрос (второй или канальный(data link) уровень модели OSI):</li>
+</ul>
+<pre><code class="language-ini">ARP-запрос:
+</code></pre>
+<pre><code class="language-ini">Sender MAC: interface:mac:address:here
+Sender IP: interface.ip.goes.here
+Target MAC: FF:FF:FF:FF:FF:FF (Broadcast)
+Target IP: target.ip.goes.here
+</code></pre>
+<p>В зависимости от того, какое «железо» расположено между компьютером и роутером (маршрутизатором):</p>
+<p>Прямое соединение:</p>
+<ul>
+<li>Если компьютер напрямую подключён к роутеру, то это устройство отправляет ARP-ответ (ARP Reply).</li>
+</ul>
+<p>Между ними концентратор (Хаб):</p>
+<ul>
+<li>Если компьютер подключён к сетевому концентратору, то этот хаб отправляет широковещательный ARP-запрос со всех своих портов. Если роутер подключён по тому же «проводу», то отправит ARP-ответ.</li>
+</ul>
+<p>Между ними коммутатор (свитч):</p>
+<ul>
+<li>Если компьютер соединён с сетевым коммутатором, то этот свитч проверит локальную CAM/MAC-таблицу, чтобы узнать, какой порт в ней имеет нужный MAC-адрес. Если нужного адреса в таблице нет, то он заново отправит широковещательный ARP-запрос по всем портам.</li>
+<li>Если в таблице есть нужная запись, то свитч отправит ARP-запрос на порт с искомым MAC-адресом.</li>
+<li>Если роутер «на одной линии» со свитчем, то он ответит (ARP Reply).</li>
+</ul>
+<pre><code class="language-ini">ARP-ответ:
+</code></pre>
+<pre><code class="language-ini">Sender MAC: target:mac:address:here
+Sender IP: target.ip.goes.here
+Target MAC: interface:mac:address:here
+Target IP: interface.ip.goes.here
+</code></pre>
+<p>Теперь у сетевой библиотеки есть IP-адрес либо DNS-сервера либо шлюза по умолчанию, который можно использовать для разрешения доменного имени:</p>
+<ul>
+<li>Случайный порт открыт для отправки UDP-запроса на DNS-сервер через порт 53 (если размер ответа слишком большой, вместо него будет использоваться TCP).
+<ul>
+<li>Порт клиента выбирается случайным образом, чтобы предотвратить атаку «DNS cache poisoning».</li>
+<li>По умолчанию Linux использует диапазон портов 32768 - 61000</li>
+<li>По умолчанию Windows использует диапазон портов 49152 - 65535</li>
+</ul>
+</li>
+<li>Если локальный или на стороне провайдера DNS-сервер «не знает» нужный адрес, то запрашивается рекурсивный поиск, который проходит по списку вышестоящих DNS-серверов, пока не будет найдена SOA-запись, а затем возвращается результат.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../whw/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../whw/02.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../whw/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../whw/02.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
