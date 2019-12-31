@@ -1,8 +1,0 @@
-[book]
-title = "Tech Docs"
-author = "Sergey Golubev"
-description = "Technical Docs for interview"
-language = "ru"
-multilingual = false
-src = "src"
-
