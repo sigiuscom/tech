@@ -21,7 +21,6 @@ jobs:
       
     - name: Build
       run: |
-        buildcommand
         cp ./CNAME ./book/CNAME
 
     - name: Deploy
