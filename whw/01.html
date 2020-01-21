@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="expanded "><a href="../whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="expanded "><a href="../whw/01.html" class="active"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="expanded "><a href="../whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="expanded "><a href="../whw/03.html"><strong aria-hidden="true">2.3.</strong> TLS</a></li><li class="expanded "><a href="../whw/04.html"><strong aria-hidden="true">2.4.</strong> HTTP</a></li><li class="spacer"></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="expanded "><a href="../whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="expanded "><a href="../whw/01.html" class="active"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="expanded "><a href="../whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="expanded "><a href="../whw/03.html"><strong aria-hidden="true">2.3.</strong> Балансировщик нагрузки</a></li><li class="expanded "><a href="../whw/04.html"><strong aria-hidden="true">2.4.</strong> TLS</a></li><li class="expanded "><a href="../whw/05.html"><strong aria-hidden="true">2.5.</strong> HTTP</a></li><li class="spacer"></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -226,13 +226,8 @@ Target IP: interface.ip.goes.here
 </code></pre>
 <p>Теперь у сетевой библиотеки есть IP-адрес либо DNS-сервера либо шлюза по умолчанию, который можно использовать для разрешения доменного имени:</p>
 <ul>
-<li>Случайный порт открыт для отправки UDP-запроса на DNS-сервер через порт 53 (если размер ответа слишком большой, вместо него будет использоваться TCP).
-<ul>
-<li>Порт клиента выбирается случайным образом, чтобы предотвратить атаку «DNS cache poisoning».</li>
-<li>По умолчанию Linux использует диапазон портов 32768 - 61000</li>
-<li>По умолчанию Windows использует диапазон портов 49152 - 65535</li>
-</ul>
-</li>
+<li>DNS-клиент устанавливает сокет для UDP-порта 53 на DNS-сервере, используя номер порта источника выше 1023.</li>
+<li>Если размер ответа слишком велик, то вместо него будет использоваться TCP.</li>
 <li>Если локальный или на стороне провайдера DNS-сервер «не знает» нужный адрес, то запрашивается рекурсивный поиск, который проходит по списку вышестоящих DNS-серверов, пока не будет найдена SOA-запись, а затем возвращается результат.</li>
 </ul>
 

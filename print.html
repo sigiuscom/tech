@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="expanded "><a href="whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="expanded "><a href="whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="expanded "><a href="whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="expanded "><a href="whw/03.html"><strong aria-hidden="true">2.3.</strong> TLS</a></li><li class="expanded "><a href="whw/04.html"><strong aria-hidden="true">2.4.</strong> HTTP</a></li><li class="spacer"></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="expanded "><a href="whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="expanded "><a href="whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="expanded "><a href="whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="expanded "><a href="whw/03.html"><strong aria-hidden="true">2.3.</strong> Балансировщик нагрузки</a></li><li class="expanded "><a href="whw/04.html"><strong aria-hidden="true">2.4.</strong> TLS</a></li><li class="expanded "><a href="whw/05.html"><strong aria-hidden="true">2.5.</strong> HTTP</a></li><li class="spacer"></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -234,13 +234,8 @@ Target IP: interface.ip.goes.here
 </code></pre>
 <p>Теперь у сетевой библиотеки есть IP-адрес либо DNS-сервера либо шлюза по умолчанию, который можно использовать для разрешения доменного имени:</p>
 <ul>
-<li>Случайный порт открыт для отправки UDP-запроса на DNS-сервер через порт 53 (если размер ответа слишком большой, вместо него будет использоваться TCP).
-<ul>
-<li>Порт клиента выбирается случайным образом, чтобы предотвратить атаку «DNS cache poisoning».</li>
-<li>По умолчанию Linux использует диапазон портов 32768 - 61000</li>
-<li>По умолчанию Windows использует диапазон портов 49152 - 65535</li>
-</ul>
-</li>
+<li>DNS-клиент устанавливает сокет для UDP-порта 53 на DNS-сервере, используя номер порта источника выше 1023.</li>
+<li>Если размер ответа слишком велик, то вместо него будет использоваться TCP.</li>
 <li>Если локальный или на стороне провайдера DNS-сервер «не знает» нужный адрес, то запрашивается рекурсивный поиск, который проходит по списку вышестоящих DNS-серверов, пока не будет найдена SOA-запись, а затем возвращается результат.</li>
 </ul>
 <h1><a class="header" href="#Открытие-сокета" id="Открытие-сокета">Открытие сокета</a></h1>
@@ -293,6 +288,8 @@ Target IP: interface.ip.goes.here
 <p>Верхний предел отправителя является объявленным окном получателя. Отправитель не должен отправлять больше неиспользованных данных, чем это ограничение, иначе это приведет к переполнению буфера, в результате чего получатель отбросит дополнительные пакеты.</p>
 <p>Окно перегрузки - это управление потоком, которое динамически настраивается на пропускную способность и надежность сети. Окно перегрузки запускает окно, в два раза превышающее максимальный размер сегмента. Он увеличивается механизмом медленного запуска TCP на каждом ACKed-пакете на 1. С этим алгоритмом окно перегрузки фактически удваивается для каждого времени прохождения туда-обратно.</p>
 <p>По достижении порога медленного старта TCP переходит от использования алгоритма медленного старта к алгоритму предотвращения скопления. Окно увеличивается на 1 сегмент за каждое путешествие туда и обратно.</p>
+<h1><a class="header" href="#Балансировщик-нагрузки" id="Балансировщик-нагрузки">Балансировщик нагрузки</a></h1>
+<p>Поскольку многие люди могут пытаться получить доступ к одной и той же веб-странице в одно и то же время, для обслуживания веб-страницы используется несколько серверов, поэтому для распределения трафика между серверами используется балансировщик нагрузки. При этом нагрузка на каждый сервер меньше, отдельные точки отказа уменьшаются, веб-сайт становится более надежным и масштабируемым, а безопасность можно повысить, добавив правило брандмауэра, которое разрешает трафик только от балансировщика нагрузки. Тем не менее, должен быть реализован хороший алгоритм, чтобы распределить трафик по серверам, таким как Round Robin, url hash, &quot;липкие сессии&quot; и т.д.</p>
 <h1><a class="header" href="#tls-handshake" id="tls-handshake">TLS handshake</a></h1>
 <ul>
 <li>Клиентский компьютер отправляет сообщение ClientHello серверу со своей версией протокола TLS, списком поддерживаемых алгоритмов шифрования и методов компрессии данных.</li>

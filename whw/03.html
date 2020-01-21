@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>TLS - Tech Docs</title>
+        <title>Балансировщик нагрузки - Tech Docs</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="expanded "><a href="../whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="expanded "><a href="../whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="expanded "><a href="../whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="expanded "><a href="../whw/03.html" class="active"><strong aria-hidden="true">2.3.</strong> TLS</a></li><li class="expanded "><a href="../whw/04.html"><strong aria-hidden="true">2.4.</strong> HTTP</a></li><li class="spacer"></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="expanded "><a href="../whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="expanded "><a href="../whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="expanded "><a href="../whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="expanded "><a href="../whw/03.html" class="active"><strong aria-hidden="true">2.3.</strong> Балансировщик нагрузки</a></li><li class="expanded "><a href="../whw/04.html"><strong aria-hidden="true">2.4.</strong> TLS</a></li><li class="expanded "><a href="../whw/05.html"><strong aria-hidden="true">2.5.</strong> HTTP</a></li><li class="spacer"></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -148,16 +148,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#tls-handshake" id="tls-handshake">TLS handshake</a></h1>
-<ul>
-<li>Клиентский компьютер отправляет сообщение ClientHello серверу со своей версией протокола TLS, списком поддерживаемых алгоритмов шифрования и методов компрессии данных.</li>
-<li>Сервер отвечает клиенту сообщением ServerHello, содержащим версию TLS, выбранный метод шифрования, выбранные методы компрессии и публичный сертификат сервиса, подписанный центром сертификации. Сертификат содержит публичный ключ, который будет использоваться клиентом для шифрования оставшейся части процедуры «рукопожатия» (handshake), пока не будет согласован симметричный ключ.</li>
-<li>Клиент подтверждает сертификат сервера с помощью своего списка центров сертификации. Если сертификат подписан центром из списка, то серверу можно доверять, и клиент генерирует строку псевдослучайных байтов и шифрует её с помощью публичного ключа сервера. Эти случайные байты могут быть использованы для определения симметричного ключа.</li>
-<li>Сервер расшифровывает случайные байты с помощью своего секретного ключа и использует эти байты для генерации своей копии симметричного мастер-ключа.</li>
-<li>Клиент отправляет серверу сообщение Finished, шифруя хеш передачи с помощью симметричного ключа.</li>
-<li>Сервер генерирует собственный хеш, а затем расшифровывает полученный от клиента хеш, чтобы проверить, совпадёт ли он с собственным. Если совпадение обнаружено, сервер отправляет клиенту собственный ответ Finished, также зашифрованный симметричным ключом.</li>
-<li>После этого TLS-сессия передаёт данные приложения (HTTP), зашифрованные с помощью подтверждённого симметричного ключа.</li>
-</ul>
+                        <h1><a class="header" href="#Балансировщик-нагрузки" id="Балансировщик-нагрузки">Балансировщик нагрузки</a></h1>
+<p>Поскольку многие люди могут пытаться получить доступ к одной и той же веб-странице в одно и то же время, для обслуживания веб-страницы используется несколько серверов, поэтому для распределения трафика между серверами используется балансировщик нагрузки. При этом нагрузка на каждый сервер меньше, отдельные точки отказа уменьшаются, веб-сайт становится более надежным и масштабируемым, а безопасность можно повысить, добавив правило брандмауэра, которое разрешает трафик только от балансировщика нагрузки. Тем не менее, должен быть реализован хороший алгоритм, чтобы распределить трафик по серверам, таким как Round Robin, url hash, &quot;липкие сессии&quot; и т.д.</p>
 
                     </main>
 
