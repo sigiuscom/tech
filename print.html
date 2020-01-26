@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="expanded "><a href="whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="expanded "><a href="whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="expanded "><a href="whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="expanded "><a href="whw/03.html"><strong aria-hidden="true">2.3.</strong> Балансировщик нагрузки</a></li><li class="expanded "><a href="whw/04.html"><strong aria-hidden="true">2.4.</strong> TLS</a></li><li class="expanded "><a href="whw/05.html"><strong aria-hidden="true">2.5.</strong> HTTP</a></li><li class="spacer"></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="expanded "><a href="whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="expanded "><a href="whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="expanded "><a href="whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="expanded "><a href="whw/03.html"><strong aria-hidden="true">2.3.</strong> Балансировщик нагрузки</a></li><li class="expanded "><a href="whw/04.html"><strong aria-hidden="true">2.4.</strong> TLS</a></li><li class="expanded "><a href="whw/05.html"><strong aria-hidden="true">2.5.</strong> HTTP</a></li></ol></li><li class="expanded "><a href="whw_kube/index.html"><strong aria-hidden="true">3.</strong> Что происходит в Kubernetes при запуске kubectl run</a></li><li><ol class="section"><li class="expanded "><a href="whw_kube/01.html"><strong aria-hidden="true">3.1.</strong> Часть 1</a></li><li class="spacer"></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -364,6 +364,17 @@ Connection: close
 <p>Далее сервер разбирает («парсит») файл с помощью обработчика. Если Google работает на PHP, то сервер использует PHP для интерпретации индексного файла и направляет результат клиенту.</p>
 </li>
 </ul>
+<h1><a class="header" href="#Вольный-перевод-части-репы-1" id="Вольный-перевод-части-репы-1">Вольный перевод части репы</a></h1>
+<p>What happens when ... Kubernetes edition! <a href="https://github.com/jamiehannaford/what-happens-when-k8s">https://github.com/jamiehannaford/what-happens-when-k8s</a></p>
+<p>Часть перевода взял с <a href="https://habr.com/ru/company/flant/blog/342658/">https://habr.com/ru/company/flant/blog/342658/</a></p>
+<h1><a class="header" href="#Что-происходит-в-kubernetes-при-запуске-kubectl-run" id="Что-происходит-в-kubernetes-при-запуске-kubectl-run">Что происходит в Kubernetes при запуске kubectl run</a></h1>
+<p>Представим, что я хочу задеплоить nginx в кластере Kubernetes. Я введу в терминале нечто такое:</p>
+<p>kubectl run --image=nginx --replicas=3
+… и нажму на Enter. Через несколько секунд увижу 3 пода с nginx, распределённые по всем рабочим узлам. Работает — словно по волшебству, и это здорово! Но что на самом деле происходит под капотом?</p>
+<p>Одно из замечательных свойств Kubernetes — как эта система обслуживает развёртывание рабочих нагрузок в инфраструктуре через дружелюбные к пользователям API. Вся сложность скрыта простой абстракцией. Однако для того, чтобы полностью осознать ценность, которую приносит K8s, полезно понимать внутреннюю кухню. Эта статья проведёт вас через весь жизненный цикл запроса от клиента до kubelet, при необходимости ссылаясь на исходный код для иллюстрации происходящего.</p>
+<h2><a class="header" href="#kubectl" id="kubectl">kubectl</a></h2>
+<h3><a class="header" href="#Валидация-и-генераторы" id="Валидация-и-генераторы">Валидация и генераторы</a></h3>
+<p>В первую очередь kubectl выполнит валидацию на стороне клиента. Он убедится, что нерабочие запросы (например, создание ресурса, который не поддерживается, или использование образа с неправильно указанным названием) быстро прервутся и не будут отправлены в kube-apiserver. Так улучшается производительность системы — благодаря снижению ненужной нагрузки.</p>
 
                     </main>
 
