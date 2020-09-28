@@ -3,8 +3,10 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Часть 1 - Tech Docs</title>
+        <title></title>
         
+        
+        <base href="/">
         
 
 
@@ -18,26 +20,26 @@
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="../favicon.svg">
+        <link rel="icon" href="favicon.svg">
         
         
-        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="shortcut icon" href="favicon.png">
         
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -47,7 +49,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "../";
+            var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -93,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="../whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="chapter-item expanded "><a href="../whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="chapter-item expanded "><a href="../whw/03.html"><strong aria-hidden="true">2.3.</strong> Балансировщик нагрузки</a></li><li class="chapter-item expanded "><a href="../whw/04.html"><strong aria-hidden="true">2.4.</strong> TLS</a></li><li class="chapter-item expanded "><a href="../whw/05.html"><strong aria-hidden="true">2.5.</strong> HTTP</a></li></ol></li><li class="chapter-item expanded "><a href="../whw_kube/index.html"><strong aria-hidden="true">3.</strong> Что происходит в Kubernetes при запуске kubectl run</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../whw_kube/01.html" class="active"><strong aria-hidden="true">3.1.</strong> Часть 1</a></li><li class="spacer"></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="chapter-item expanded "><a href="whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="chapter-item expanded "><a href="whw/03.html"><strong aria-hidden="true">2.3.</strong> Балансировщик нагрузки</a></li><li class="chapter-item expanded "><a href="whw/04.html"><strong aria-hidden="true">2.4.</strong> TLS</a></li><li class="chapter-item expanded "><a href="whw/05.html"><strong aria-hidden="true">2.5.</strong> HTTP</a></li></ol></li><li class="chapter-item expanded "><a href="whw_kube/index.html"><strong aria-hidden="true">3.</strong> Что происходит в Kubernetes при запуске kubectl run</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="whw_kube/01.html"><strong aria-hidden="true">3.1.</strong> Часть 1</a></li><li class="spacer"></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -128,7 +130,7 @@
                     <h1 class="menu-title">Tech Docs</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         
@@ -159,23 +161,13 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#Что-происходит-в-kubernetes-при-запуске-kubectl-run" id="Что-происходит-в-kubernetes-при-запуске-kubectl-run">Что происходит в Kubernetes при запуске kubectl run</a></h1>
-<p>Представим, что я хочу задеплоить nginx в кластере Kubernetes. Я введу в терминале нечто такое:</p>
-<p>kubectl run --image=nginx --replicas=3
-… и нажму на Enter. Через несколько секунд увижу 3 пода с nginx, распределённые по всем рабочим узлам. Работает — словно по волшебству, и это здорово! Но что на самом деле происходит под капотом?</p>
-<p>Одно из замечательных свойств Kubernetes — как эта система обслуживает развёртывание рабочих нагрузок в инфраструктуре через дружелюбные к пользователям API. Вся сложность скрыта простой абстракцией. Однако для того, чтобы полностью осознать ценность, которую приносит K8s, полезно понимать внутреннюю кухню. Эта статья проведёт вас через весь жизненный цикл запроса от клиента до kubelet, при необходимости ссылаясь на исходный код для иллюстрации происходящего.</p>
-<h2><a class="header" href="#kubectl" id="kubectl">kubectl</a></h2>
-<h3><a class="header" href="#Валидация-и-генераторы" id="Валидация-и-генераторы">Валидация и генераторы</a></h3>
-<p>В первую очередь kubectl выполнит валидацию на стороне клиента. Он убедится, что нерабочие запросы (например, создание ресурса, который не поддерживается, или использование образа с неправильно указанным названием) быстро прервутся и не будут отправлены в kube-apiserver. Так улучшается производительность системы — благодаря снижению ненужной нагрузки.</p>
+                        <h1><a class="header" href="#document-not-found-404" id="document-not-found-404">Document not found (404)</a></h1>
+<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
-                            <a rel="prev" href="../whw_kube/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
                         
 
                         
@@ -186,10 +178,6 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                    <a rel="prev" href="../whw_kube/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
                 
 
                 
@@ -229,14 +217,14 @@
         
 
         
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
