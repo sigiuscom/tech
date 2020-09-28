@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="../whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="chapter-item expanded "><a href="../whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="chapter-item expanded "><a href="../whw/03.html"><strong aria-hidden="true">2.3.</strong> Балансировщик нагрузки</a></li><li class="chapter-item expanded "><a href="../whw/04.html"><strong aria-hidden="true">2.4.</strong> TLS</a></li><li class="chapter-item expanded "><a href="../whw/05.html"><strong aria-hidden="true">2.5.</strong> HTTP</a></li></ol></li><li class="chapter-item expanded "><a href="../whw_kube/index.html" class="active"><strong aria-hidden="true">3.</strong> Что происходит в Kubernetes при запуске kubectl run</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../whw_kube/01.html"><strong aria-hidden="true">3.1.</strong> Часть 1</a></li><li class="spacer"></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="../whw/index.html"><strong aria-hidden="true">2.</strong> Что происходит когда пользователь открывает веб-страницу</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../whw/01.html"><strong aria-hidden="true">2.1.</strong> DNS</a></li><li class="chapter-item expanded "><a href="../whw/02.html"><strong aria-hidden="true">2.2.</strong> Сокеты</a></li><li class="chapter-item expanded "><a href="../whw/03.html"><strong aria-hidden="true">2.3.</strong> Балансировщик нагрузки</a></li><li class="chapter-item expanded "><a href="../whw/04.html"><strong aria-hidden="true">2.4.</strong> TLS</a></li><li class="chapter-item expanded "><a href="../whw/05.html"><strong aria-hidden="true">2.5.</strong> HTTP</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../whw_kube/index.html" class="active"><strong aria-hidden="true">3.</strong> Что происходит в Kubernetes при запуске kubectl run</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../whw_kube/00.html"><strong aria-hidden="true">3.1.</strong> Кратко</a></li><li class="chapter-item expanded "><a href="../whw_kube/01.html"><strong aria-hidden="true">3.2.</strong> kubectl</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.3.</strong> kube-apiserver</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.4.</strong> etcd</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.5.</strong> Управляющие циклы</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.6.</strong> kubelet</div></li><li class="spacer"></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -132,6 +132,10 @@
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         
+                        <a href="https://github.com/sagolubev/sagolubev.github.io" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -162,6 +166,10 @@
                         <h1><a class="header" href="#Вольный-перевод-части-репы" id="Вольный-перевод-части-репы">Вольный перевод части репы</a></h1>
 <p>What happens when ... Kubernetes edition! <a href="https://github.com/jamiehannaford/what-happens-when-k8s">https://github.com/jamiehannaford/what-happens-when-k8s</a></p>
 <p>Часть перевода взял с <a href="https://habr.com/ru/company/flant/blog/342658/">https://habr.com/ru/company/flant/blog/342658/</a></p>
+<p>Представим, что я хочу задеплоить nginx в кластере Kubernetes. Я введу в терминале нечто такое:</p>
+<p>kubectl run --image=nginx --replicas=3
+… и нажму на Enter. Через несколько секунд увижу 3 пода с nginx, распределённые по всем рабочим узлам. Работает — словно по волшебству, и это здорово! Но что на самом деле происходит под капотом?</p>
+<p>Одно из замечательных свойств Kubernetes — как эта система обслуживает развёртывание рабочих нагрузок в инфраструктуре через дружелюбные к пользователям API. Вся сложность скрыта простой абстракцией. Однако для того, чтобы полностью осознать ценность, которую приносит K8s, полезно понимать внутреннюю кухню. Тут будет описан весь жизненный цикл запроса от клиента до kubelet, при необходимости будут ссылки на исходный код для иллюстрации происходящего.</p>
 
                     </main>
 
@@ -174,7 +182,7 @@
                         
 
                         
-                            <a rel="next" href="../whw_kube/01.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../whw_kube/00.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -192,7 +200,7 @@
                 
 
                 
-                    <a rel="next" href="../whw_kube/01.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../whw_kube/00.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
