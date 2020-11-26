@@ -1,0 +1,37 @@
+name: publish
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout branch "deploy"
+      uses: actions/checkout@v2
+      with:
+        ref: 'master'
+
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: '0.4.4'
+
+    - run: mdbook build
+      
+    - name: Copy cname
+      run: |
+        cp ./CNAME ./book/CNAME
+        
+    - name: Copy readme
+      run: |
+        cp ./README.md ./book/README.md
+      
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: deployment
+        PUBLISH_DIR: ./book
