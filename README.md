@@ -1,2 +1,2 @@
 # sagolubev.github.io
-Tech Docs
+Tech Docs for learning purposes
