@@ -4,7 +4,8 @@
 [![Uptime](https://img.shields.io/uptimerobot/ratio/7/m782858042-3d71762d2d4534e733870644)](#)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
-## sagolubev.github.io
-Tech Docs for learning purposes
 
+## Tech Docs 
+for learning purposes
 
+[![My LinkedIn](https://img.shields.io/badge/LinkedIn%20Profile-sagolubev-blue?logo=linkedin)](https://www.linkedin.com/in/sagolubev/)
