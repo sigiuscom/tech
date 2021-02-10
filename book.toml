@@ -8,6 +8,6 @@ src = "src"
 
 [output.html]
 google-analytics = "UA-42238316-4"
-git-repository-url = "https://github.com/sagolubev/sagolubev.github.io"
+git-repository-url = "https://github.com/sigius-com/tech"
 git-repository-icon = "fa-github"
 cname = "sigius.com"
