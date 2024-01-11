@@ -5,12 +5,16 @@
 
 Так же некоторые мои заметки по технологиям.
 
-Отличные flash карточки по некоторым технологиям
+Flash карточки по некоторым технологиям
 https://flashcards.wizardzines.com/
 
-Отличное иллюстрированное руководство по TLS 1.2 и 1.3, DTLS, QUIC
+Иллюстрированное руководство по TLS 1.2 и 1.3, DTLS, QUIC
 https://tls12.xargs.org/
  
 
-Супер объяснения про редис, бд и проч
+Объяснения про редис, бд и проч
 https://architecturenotes.co/
+
+
+Книга по флагам strace с примерами
+https://nanxiao.github.io/strace-little-book
