@@ -15,7 +15,7 @@ jobs:
         ref: 'master'
 
     - name: Setup mdBook
-      uses: peaceiris/actions-mdbook@v1
+      uses: peaceiris/actions-mdbook@adeb05db28a0c0004681db83893d56c0388ea9ea # v1
       with:
         mdbook-version: '0.4.25'
 
@@ -30,7 +30,7 @@ jobs:
         cp ./README.md ./book/README.md
       
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
+      uses: peaceiris/actions-gh-pages@45b43ab25725682861f953edbb911fe7f402a5b6 # v2
       env:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: deployment
