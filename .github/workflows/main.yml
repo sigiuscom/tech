@@ -5,6 +5,9 @@ on:
     branches:
     - master
 
+permissions:
+  contents: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-24.04
@@ -20,18 +23,18 @@ jobs:
         mdbook-version: '0.4.25'
 
     - run: mdbook build
-      
+
     - name: Copy cname
       run: |
         cp ./CNAME ./book/CNAME
-        
+
     - name: Copy readme
       run: |
         cp ./README.md ./book/README.md
-      
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
-      env:
-        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_BRANCH: deployment
-        PUBLISH_DIR: ./book
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: deployment
+        publish_dir: ./book
