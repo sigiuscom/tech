@@ -30,7 +30,7 @@ jobs:
         cp ./README.md ./book/README.md
       
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@45b43ab25725682861f953edbb911fe7f402a5b6 # v2
+      uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
       env:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: deployment
