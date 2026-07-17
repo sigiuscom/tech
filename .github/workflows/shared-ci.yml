@@ -12,5 +12,5 @@ concurrency:
 
 jobs:
   gitleaks:
-    uses: sigiuscom/workflows/.github/workflows/gitleaks.yml@b606fc16d412cba3d29c06b8c52ed55d72205a44 # main
+    uses: sigiuscom/workflows/.github/workflows/gitleaks.yml@39f1613a5407bf7737a1cf353c81ce0dd78f4be1 # main
     secrets: inherit
