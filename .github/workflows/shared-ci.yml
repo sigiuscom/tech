@@ -10,6 +10,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   gitleaks:
     uses: sigiuscom/workflows/.github/workflows/gitleaks.yml@de66d5b89d45fb41bafdb706aecce4b64e902173 # main
