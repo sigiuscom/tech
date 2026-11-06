@@ -15,5 +15,5 @@ permissions:
 
 jobs:
   gitleaks:
-    uses: sigiuscom/workflows/.github/workflows/gitleaks.yml@774459462077d2de518a67ddadefe84b9261256d # main
+    uses: sigiuscom/workflows/.github/workflows/gitleaks.yml@f3a076561021d755d5bf83c5598a62ce71e40927 # main
     secrets: inherit
